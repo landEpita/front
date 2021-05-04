@@ -1,0 +1,207 @@
+/* Fil rouge: selecteur, dim, couleur
+texte
+background
+boxes
+positioning
+flex
+grid
+pseudo classe
+debug
+responsive */
+
+/* tout peut etre modifier sur f12 */
+
+/*Load font de google*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+/*si on veut la telecharger*/
+/* @font-face {
+    font-family: "font-1";
+    src: url("dossier");
+} */
+
+*{
+    margin: 0;
+    padding:0;
+}
+
+h1{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 2.5rem;
+    color: #f44336;
+    text-shadow: -5px -3px 4px #00000063; /* 1) l'axe des x, y*/
+    text-align: center; /*centre le text*/
+    font-family: 'Poppins', sans-serif; /*si il la connait pas il met sans-serif*/
+    font-weight: bold;
+    text-transform: capitalize; /*met la premiere lettre en maj*/
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    /* background-color: rgb(240, 240, 240); on peut jsute mettre background */
+    background: url(assets/bg.jpg) center/cover no-repeat whitesmoke;  /*mettre une image, premiere element avant / fixe l'image, on peut la laisser en fixe avec no-repeat, fixed pour fixer pour que l 'image ne bouge pas quand on descent*/
+    /* height: 100vh; vh: 100% de la taille de l'ecran */
+    /* overflow: hidden; pour enlever les marge */
+    /* background-color: whitesmoke; */
+}
+
+/*vh vw*/
+main{
+    background: whitesmoke;
+    width: 80%; /*on peut lui donner en %, en hauteur en pixel et largeur en %*/
+    min-width: 500px;
+
+    /* MARGE */
+    /*c'est la box du text*/
+    /*si on donne 2 element a margin*/
+    margin: 10px auto; /* haut/bas   gauche/droite*/ /*auto met autant a gauche qu a droite*/
+    /*mais on peut en donner 4 et ca fait haut droit bas gauche*/
+
+    /* PADDING */
+    /* c'est l espace entre la box et le text*/
+    padding:15px;
+
+    border-radius: 10px; /* pour arrondir les bord */
+    box-shadow: 5px 4px 7px 0px black;
+}
+
+/* . pour class*/
+.positioning,
+.flexbox,
+.grid{
+    border: 2px solid yellowgreen;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+/****** Posioning ****/
+
+.positioning
+{
+    position:relative; /*on defini un cadre qu'on met en relative*/
+}
+
+/*# pour un id, id est unique*/
+#circle{
+    height: 60px;
+    width: 60px;
+    padding: 7px;
+    background: skyblue;
+    border-radius: 50%; /*donner 50% pour un cercle*/
+    position: absolute; /*il va se mettre a la postion donner dans le parent relatif*/
+    top: 0;
+    right: 0;
+    z-index: 1; /*met cette element au dessus*/
+}
+
+#rectangle{
+    height: 15px;
+    width: 100px;
+    background: rgb(255, 68, 68);
+    padding: 20px;
+    position:absolute;
+    bottom: 5px;
+    left:50%; /*si on veut le centrer, mais il centre la bordure gauche*/
+    transform: translateX(-50%); /*permet de le deplacer de -50% de sa taille pour qu'il soit vraiment centré*/
+
+}
+
+/******************** Flexbox **********************/
+
+ul{
+    display: flex; /* met a la ligne*/
+    justify-content: space-around; /*permet de postioner automatiquement les boites dans l'espace*/
+}
+
+li{
+    list-style-type: none;  /*enleve les point des list*/
+    font-size: 0.5rem;
+    height: 150px;
+    width: 150px;
+    background: rgb(255, 68, 68);
+    display:flex; /*permet de centrer*/
+    align-items: center; /*centrer en hauteur*/
+    justify-content: center; /*centrer en largeur*/
+}
+
+
+/**************************** GRID *************************/
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 30% 70%; /*30% pour le premiere enfant 70% pour le 2eme.*/
+    padding:20px;
+}
+
+.img{
+    text-align: center; /*centre tous se qui est a l interieur*/
+}
+
+form{
+    display:grid;
+    grid-template-columns: 1fr 1fr; /*2 columns egale 1 fraction et 1 fraction*/
+    grid-template-rows: 1fr 1fr 1fr; /*3 ligne*/
+    grid-template-areas: /*on dessine le grid*/
+    "i1 i2" /*input1 input2*/
+    "ta ta" /*textarea textarea*/
+    "bt bt"; /*bouton bouton*/
+}
+
+
+input,
+textarea{
+    margin: 5px;
+    height: 45px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+#firstname{
+    grid-area: i1; /* on leur donne un nom*/
+}
+
+#surname{
+    grid-area: i2;
+}
+
+textarea{
+    grid-area: ta;
+    resize: none; /*empeche le redimensionement*/
+}
+
+input[type="submit"]{
+    grid-area: bt;
+    cursor: pointer; /*changer le curseurs*/
+    background: brown;
+    transition: 0.2s; /*permet de faire le hover plus doucement*/
+}
+
+input[type="submit"]:hover{ /*quand on passe la sourie dessu*/
+    background: red;
+    color: white;
+}
+
+/********************  RESPONSsIvE *********************/
+
+@media screen and (max-width:980px){
+    .grid-container{
+        display: block;
+    }
+}
+
+@media screen and (max-width:750px){
+    form{
+        display:grid;
+        grid-template-columns: 1fr; /*2 columns egale 1 fraction et 1 fraction*/
+        grid-template-rows: 1fr 1fr 1fr 1fr; /*3 ligne*/
+        grid-template-areas: /*on dessine le grid*/
+        "i1" /*input1 input2*/
+        "i2"
+        "ta" /*textarea textarea*/
+        "bt"; /*bouton bouton*/
+    }
+}

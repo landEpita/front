@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+*{
+    margin: 0;
+    padding:0;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+.logo{
+    display:flex; 
+    align-items: center; 
+    justify-content: center;
+    margin-top:40px;
+}
+
+.menu{
+    display: flex; 
+    padding: 10px;
+    margin-top: 20px;
+    /* border: solid black; */
+}
+
+ul{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+li{
+    list-style-type: none; 
+    display:inline;
+    width: 150px;
+    margin: 0 10px;
+    align-items: center; 
+    justify-content: center; 
+    
+}
+
+a{
+    color:#e7323a;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+a:hover{
+    color:#000000;
+}
+
+.bord{
+    background: url("http://teamupupup.com/wp-content/uploads/2020/03/BG-contact-hero-New.png") #e7323a  center/cover;
+    border: 1px solid #ffffff;
+    height: 380px;
+    /* opacity: 0.15; */
+}
+
+.text_d{
+    margin-top: 100px;
+    /* border: 2px solid yellowgreen; */
+}
+
+h1{
+    font-size: 6rem;
+    color: #ffffff;
+    text-align: center; 
+}
+
+h2{
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-align: center; 
+}
+
+.flexbox{
+    margin: 41px 0 ;
+    /* border: 2px solid yellowgreen; */
+    /* border: 2px solid yellowgreen; */
+}
+
+.ul-icone{
+    display: flex; /* met a la ligne*/
+    justify-content: space-around; /*permet de postioner automatiquement les boites dans l'espace*/
+}
+
+.li-icone{
+    list-style-type: none;  /*enleve les point des list*/
+    font-size: 0.8rem;
+    /* height: 150px;
+    width: 150px; */
+    /* border: 2px solid yellowgreen; */
+    /* background: rgb(255, 68, 68); */
+    display:flex; 
+    align-items: center ; 
+    flex-direction: column;
+    justify-content: center; 
+}
+
+.a-icone{
+    color:black;
+    display:flex;
+    text-align: center;
+}
+
+i{
+    /* display:flex;  */
+    color:#e7323a;
+    font-size: 3rem;
+    /* background: rgb(124, 85, 85); */
+    text-align: center;
+    padding: 20px;
+    transition: 0.2s;
+}
+
+i:hover{
+    color:#000000;
+}
+
+/****** GRID ******/
+
+.overlay{
+    width: 90%;
+    margin: 150px auto;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 50% 50%; /*30% pour le premiere enfant 70% pour le 2eme.*/
+}
+
+form{
+    display:grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; /*2 columns egale 1 fraction et 1 fraction*/
+    grid-template-columns: 0.2fr 1fr 0.6fr; /*3 ligne*/
+    grid-template-areas: /*on dessine le grid*/
+    "tx tx tx" 
+    "i1 i1 i1" 
+    "i2 i2 i2"
+    "ta ta ta"
+    "c1 l1 l1" 
+    "c2 l2 l2" 
+    ". . bt"; 
+    background: white;
+    box-shadow: 0px 0px 20px 0px #00000052;
+    border-radius: 10px;
+    padding: 8% 12%;
+}
+
+
+input,
+textarea{
+    margin: 5px;
+    height: 45px;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+    color:rgb(170, 170, 170);
+}
+
+input{
+    height: 20px;
+}
+
+label{
+    font-size: 0.8rem;
+    font-family: 'Poppins', sans-serif;
+    color:rgb(82, 82, 82);
+    display:flex; /*permet de centrer*/
+    align-items: center; /*centrer en hauteur*/
+    justify-content: left; /*centrer en largeur*/
+}
+
+#text-from{
+    grid-area:tx;
+    color:rgb(82, 82, 82);
+    text-align: justify;
+}
+
+#firstname{
+    grid-area: i1; /* on leur donne un nom*/
+}
+
+#mail{
+    grid-area: i2;
+}
+
+textarea{
+    grid-area: ta;
+    resize: none; /*empeche le redimensionement*/
+}
+
+#etudiant{
+    grid-area: c1;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#ecole{
+    grid-area: c2;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#etudiant-l{
+    grid-area: l1;
+}
+
+#ecole-l{
+    grid-area: l2;
+}
+
+input[type="submit"]{
+    grid-area: bt;
+    cursor: pointer; /*changer le curseurs*/
+    background: #e7323a;
+    transition: 0.2s; /*permet de faire le hover plus doucement*/
+    border-radius: 15px;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin:0;
+    height: 40px;
+}
+
+input[type="submit"]:hover{
+    background: rgb(0, 0, 0);
+    color:white;
+}
+
+.text-overlay{
+    padding:10%;
+}
+
+.text-overlay-h2{
+    color:black;
+    font-size: 2.5rem;
+    margin: 20px 0;
+
+}
+
+.text-overlay-a{
+    margin: 20px 0;
+    color:rgb(75, 75, 75);
+}
+
+.darkmode{
+    background: black;
+    color:blanchedalmond;
+}

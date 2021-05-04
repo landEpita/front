@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+*{
+    padding:0;
+    margin: 0;
+}
+body{
+    background: rgb(43, 43, 43);
+    font-family: 'Poppins', sans-serif;
+}
+
+.content{
+    color: whitesmoke;
+    transition:1s;
+    height: 100vh;
+}
+
+h1{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 4rem;
+    color:tomato;
+}
+p{
+    padding: 2rem 5rem;
+}
+
+#side-bar{
+    position: absolute;
+    width: 230px;
+    height: 100%;
+    background: tomato;
+    left:-300px;
+    transition:.5s ease-out; /*lent vers la fin*/
+    z-index: 4;
+}
+
+.toggle-button, .toggle-button2{
+    position:absolute;
+    top: 30px;
+    left: 310px;
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+}
+
+.toggle-button span {
+    width: 60px;
+    height: 10px;
+    border-radius: 5px;
+    display: block;
+    background:tomato;
+    margin-top: 4px;
+    transition:  0.5s ease;
+}
+
+.toggle-button2{
+    top: 90px;
+}
+
+.toggle-button2 i {
+    font-size: 3rem;
+    display: flex;
+    color:tomato;
+    transition:  0.5s ease;
+    /* transform: rotate(45deg); */
+}
+
+#side-bar li {
+    color: white;
+    list-style-type: none;
+    font-size: 2.5rem;
+    cursor:pointer;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+#side-bar li:hover {
+    color: rgb(0, 0, 0);
+}
+
+#side-bar.active{
+    left:0;
+}
+
+#side-bar.active .toggle-button .toggle-button2{
+    left: 265px;
+}
+
+#side-bar.active span{
+    position: absolute;
+}
+
+#side-bar.active .toggle-button span:nth-child(1){ /*premier span*/
+    transform: rotate(45deg);
+}
+#side-bar.active .toggle-button span:nth-child(2){ /*premier span*/
+    opacity: 0;
+}
+#side-bar.active .toggle-button span:nth-child(3){ /*premier span*/
+    transform: rotate(-45deg);
+}
+#side-bar.active ~ .content{ /*premier span*/
+    opacity: 0.3;
+}
+
+#side-bar.active .toggle-button2 i{ /*premier span*/
+    transform: rotate(45deg);
+}

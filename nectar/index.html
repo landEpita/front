@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cours CSS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/log.png" />
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="./assets/log.png" alt="logo">
+        </div>
+
+        <div class="menu">
+            <ul>
+                <li>
+                    <a href="https://flexbox.help/" target="_blank">Le podcast</a>
+                </li>
+                <li>
+                    <a href="https://www.reveillere.fr/M2WEB/sheets/css.pdf" target="_blank">Newsletter</a>
+                </li>
+                <li>
+                    <a href="https://cssgenerator.org/" target="_blank">Les voix du podcast</a>
+                </li>
+                <li>
+                    <a href="https://cssgenerator.org/" target="_blank">Blog</a>
+                </li>
+            </ul>
+        </div>
+
+    </header>
+
+    <div class="bord">
+        <div class="text_d">
+            <h1>Upupup.</h1>
+            <h2>Le podcast des étudiants qui mènent une double vie</h2>
+        </div>
+    </div>
+
+    <div class="flexbox">
+        <ul class="ul-icone">
+            <li class="li-icone">
+                <div class="icon">
+                    <i class="fab fa-spotify"></i>
+                    <a class="a-icone">Spotify</a>
+                </div>
+            </li>
+            <li class="li-icone">
+                <div class="icon">
+                    <i class="fas fa-podcast"></i>
+                    <a class="a-icone">Apple podcast</a>
+                </div>
+            </li>
+            <li class="li-icone">
+                <div class="icon">
+                    <i id="theme" class="fab fa-google"></i>
+                    <a class="a-icone">Google Podcast</a>
+                </div>
+            </li>
+            <li class="li-icone">
+                <div class="icon">
+                    <i class="fas fa-microphone"></i>
+                    <a class="a-icone">Deezer</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="overlay">
+        <div class="grid-container">
+            <form>
+                <a id="text-from">Tu souhaites intervenir dans notre podcast car tu es étudiant ou tu possèdes une structure qui accompagne les étudiants dans leurs projets ? Ecris-nous ! </a>
+                <input type="text" id="firstname" placeholder="Prénom">
+                <input type="text" id="mail" placeholder="E-mail">
+                <textarea cols="30" rows="10" placeholder="Dis-nous tous :)"></textarea>
+                <input type="checkbox" id="etudiant" name="etudiant" value="etudiant">
+                <label for="etudiant"  id="etudiant-l">Etudiant ou junior</label>
+                <input type="checkbox" id="ecole" name="ecole" value="ecole">
+                <label for="ecole" id="ecole-l"> Ecole, entreprise ou structure d'accompagnement</label>
+                <input type="submit" value="c'est parti">
+            </form>
+            <div class="text-overlay">
+                <h2 class="text-overlay-h2">Qui sommes-nous ?</h2>
+                <a class="text-overlay-a">Upupup. est un podcast qui donne la parole à des étudiants et juniors qui n’ont pas attendu la fin de leurs études pour se lancer dans un projet.
+
+                    Découvrez des étudiants qui sont aussi entrepreneurs, freelances, artistes, sportifs, créateurs de contenu, influenceurs…. et bien d’autres encore. </a>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="index.js"></script>
+</body>
+
+</html>
