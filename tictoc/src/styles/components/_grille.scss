@@ -1,0 +1,22 @@
+.grille{
+    position: absolute;
+    background: $color-5;
+    border-radius: 8px;
+    left: 50%;
+    transform: translate(-50%);
+    top:70px;
+    width: 500px;
+    height: 500px;
+
+    .grille_mesh{
+        width: 100%;
+        height: 100%;
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr; /*2 columns egale 1 fraction et 1 fraction*/
+        grid-template-rows: 1fr 1fr 1fr; /*3 ligne*/
+        grid-template-areas: /*on dessine le grid*/
+        "c c c" /*input1 input2*/
+        "c c c" /*textarea textarea*/
+        "c c c"; /*bouton bouton*/
+    }
+}
