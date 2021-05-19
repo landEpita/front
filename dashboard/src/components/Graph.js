@@ -1,12 +1,34 @@
 import React, { useState } from 'react';
 import Tree from 'react-tree-graph';
-import { Drawer, Input, Button, Tooltip } from 'antd';
+import { Drawer, Input, Button, Tooltip, Progress } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import NodeInfo from './NodeInfo';
 
 
 const Graph = () => {
     const [visible, setVisible] = useState(false);
     const [node, setNode] = useState({name:null});
+    const [name, setName] = useState(null);
+    const [port, setPort] = useState(null);
+    const [addr, setAddr] = useState(null);
+    const [data, setData] = useState({
+        name: 'Validation',
+        textProps: {x: -25, y: 25},
+        children: [{
+            name: 'preprocessing 1',
+            textProps: {x: -25, y: 25},
+            children:[{
+                name: 'model 1',
+                textProps: {x: -25, y: 25}
+            },{
+                name: 'model 2',
+                textProps: {x: -25, y: 25}
+            }]
+        }, {
+            name: 'model 3',
+            textProps: {x: -25, y: 25}
+        }]
+    });
 
     const showDrawer = (event, nodeKey) => {
       setVisible(true);
@@ -17,25 +39,27 @@ const Graph = () => {
       setVisible(false);
     };
 
+    const getData = () => {
 
-    let data = {
-        name: 'Parent',
-        textProps: {x: -25, y: 25},
-        children: [{
-            name: 'Child One',
-            textProps: {x: -25, y: 25},
-            children:[{
-                name: 'model',
-                textProps: {x: -25, y: 25}
-            },{
-                name: 'model2',
-                textProps: {x: -25, y: 25}
-            }]
-        }, {
-            name: 'Child Two',
-            textProps: {x: -25, y: 25}
-        }]
-    };
+        const requestOptions = {
+            mode: "cors",
+            credentials: "include",
+            method: "GET",
+        }
+        if (name && port && addr)
+        {
+        fetch("http://"+addr+":"+port+"/pipeline/"+name, requestOptions)
+            .then(response => response.json())
+            .then(e =>
+                {
+                    console.log(e)
+                    if (e){
+                        setData(e);
+                    }
+                }
+            )
+        }
+    }
 
     
     return (
@@ -43,11 +67,12 @@ const Graph = () => {
 
             <div className="input-containers">
             <Input.Group compact>
-                <Input style={{ width: "70%" }} placeholder="address" />
-                <Input style={{ width: "30%" }} placeholder="port" />
+                <Input style={{ width: "50%" }} placeholder="address" onChange={(e) => setAddr(e.target.value)}/>
+                <Input style={{ width: "30%" }} placeholder="port" onChange={(e) => setPort(e.target.value)}/>
+                <Input style={{ width: "20%" }} placeholder="name" onChange={(e) => setName(e.target.value)}/>
             </Input.Group>
             <Tooltip title="search">
-                <Button type="primary" shape="circle" icon={<SearchOutlined />} />
+                <Button type="primary" shape="circle" icon={<SearchOutlined />} onClick={()=> getData()}/>
             </Tooltip>
             </div>
 
@@ -72,9 +97,7 @@ const Graph = () => {
                 onClose={onClose}
                 visible={visible}
             >
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
+            <NodeInfo name={node["name"]} graph={data}/>
             </Drawer>
         </div>
     );
