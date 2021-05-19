@@ -10,6 +10,9 @@ import {
 import Board from "../components/Board"
 import logo from "../assets/logo.png"
 
+import {BrowserRouter, Link, Switch, Route} from "react-router-dom"
+import Graph from "../components/Graph"
+
 const { Header, Sider, Content } = Layout
 
 const SiderDemo = () => {
@@ -24,21 +27,22 @@ const SiderDemo = () => {
     }
     return (
         <Layout>
+            <BrowserRouter>
             <Sider trigger={null} collapsible collapsed={state.collapsed}>
                 <div className="logo">
                     {state.collapsed === false ? <img src={logo} alt="ok" /> : null}
                 </div>
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
                     <Menu.Item key="1" icon={<UserOutlined />}>
-                        Home
+                        <Link to="/">Home</Link>
                     </Menu.Item>
                     <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                        About
+                        <Link to="/outlier">Outlier</Link>
                     </Menu.Item>
                     <Menu.Item key="3" icon={<UploadOutlined />}>
-                        Service
+                        <Link to="/pipeline">Pipeline</Link>
                     </Menu.Item>
-                    <Menu.Item key="3" icon={<UploadOutlined />}>
+                    <Menu.Item key="4" icon={<UploadOutlined />}>
                         Contact
                     </Menu.Item>
                 </Menu>
@@ -62,10 +66,20 @@ const SiderDemo = () => {
                         overflow: "hidden",
                     }}
                 >
-                    <Board />
-                    {/* Content */}
+                    <Switch>
+                        <Route path="/outlier">
+                            <Board />
+                        </Route>
+                        <Route path="/pipeline">
+                            <Graph/>
+                        </Route>
+                        <Route path="/">
+                            home
+                        </Route>
+                    </Switch>
                 </Content>
             </Layout>
+            </BrowserRouter>
         </Layout>
     )
 }
