@@ -4,8 +4,9 @@ import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
     UserOutlined,
-    VideoCameraOutlined,
     UploadOutlined,
+    BarChartOutlined,
+    ApartmentOutlined,
 } from "@ant-design/icons"
 import Board from "../components/Board"
 import logo from "../assets/logo.png"
@@ -36,14 +37,14 @@ const SiderDemo = () => {
                     <Menu.Item key="1" icon={<UserOutlined />}>
                         <Link to="/">Home</Link>
                     </Menu.Item>
-                    <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+                    <Menu.Item key="2" icon={<BarChartOutlined />}>
                         <Link to="/outlier">Outlier</Link>
                     </Menu.Item>
-                    <Menu.Item key="3" icon={<UploadOutlined />}>
+                    <Menu.Item key="3" icon={<ApartmentOutlined />}>
                         <Link to="/pipeline">Pipeline</Link>
                     </Menu.Item>
                     <Menu.Item key="4" icon={<UploadOutlined />}>
-                        Contact
+                        <Link to="/contact">Contact</Link>
                     </Menu.Item>
                 </Menu>
             </Sider>

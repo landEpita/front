@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Tree from 'react-tree-graph';
-import { Drawer, Input, Button, Tooltip, Progress } from 'antd';
+import { Drawer, Input, Button, Tooltip } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import NodeInfo from './NodeInfo';
 
@@ -13,21 +13,21 @@ const Graph = () => {
     const [addr, setAddr] = useState(null);
     const [data, setData] = useState({
         name: 'Validation',
-        textProps: {x: -25, y: 25},
-        children: [{
-            name: 'preprocessing 1',
-            textProps: {x: -25, y: 25},
-            children:[{
-                name: 'model 1',
-                textProps: {x: -25, y: 25}
-            },{
-                name: 'model 2',
-                textProps: {x: -25, y: 25}
-            }]
-        }, {
-            name: 'model 3',
-            textProps: {x: -25, y: 25}
-        }]
+        textProps: {x: -25, y: 25}
+        // children: [{
+        //     name: 'preprocessing 1',
+        //     textProps: {x: -25, y: 25},
+        //     children:[{
+        //         name: 'model 1',
+        //         textProps: {x: -25, y: 25}
+        //     },{
+        //         name: 'model 2',
+        //         textProps: {x: -25, y: 25}
+        //     }]
+        // }, {
+        //     name: 'model 3',
+        //     textProps: {x: -25, y: 25}
+        // }]
     });
 
     const showDrawer = (event, nodeKey) => {
@@ -94,6 +94,7 @@ const Graph = () => {
                 title={node["name"]}
                 placement="right"
                 closable={false}
+                width={600}
                 onClose={onClose}
                 visible={visible}
             >
