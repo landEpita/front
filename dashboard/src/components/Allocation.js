@@ -1,19 +1,19 @@
-import React, { useCallback, useState } from "react"
+import React, { useCallback, useState, useContext } from "react"
 import car from "../assets/car.png"
 import History from "./Context"
 
 const Allocation = () => {
     const [img, setImg] = useState({ file: null, img: null, label: "None", score: "inf" })
-    const contextHist = React.useContext(History)
+    const {hist, setHist} = useContext(History)
 
     const wrap_set_img = useCallback(
         elt => {
             setImg(elt)
             if (elt.score !== "inf") {
-                contextHist.setHist([...contextHist.hist, elt])
+                setHist([...hist, elt])
             }
         },
-        [contextHist],
+        [hist, setHist],
     )
 
     const load_img = event => {
@@ -26,7 +26,7 @@ const Allocation = () => {
         })
     }
 
-    const submitChange = () => {
+    const submitChange = async () => {
         const data = new FormData()
         data.append("file", img.file)
 
@@ -37,17 +37,14 @@ const Allocation = () => {
             body: data,
         }
 
-        fetch("http://localhost:5000/predict", requestOptions)
-            .then(response => response.json())
-            .then(data =>
-                wrap_set_img({
-                    file: img.file,
-                    img: img.img,
-                    label:
-                        data["label"] === 1 ? "In Distribution" : "Out of Distribution",
-                    score: Number(data["loss"]),
-                }),
-            )
+        const response = await fetch("http://localhost:5000/predict", requestOptions)
+        const data = await response.json()
+        wrap_set_img({
+            file: img.file,
+            img: img.img,
+            label: data["label"] === 1 ? "In Distribution" : "Out of Distribution",
+            score: Number(data["loss"]),
+        })
     }
 
     return (
@@ -55,7 +52,7 @@ const Allocation = () => {
             Validation de donnée
             <div className="allo_grid">
                 <div className="img_loader">
-                    <img src={img.img == null ? car : img.img} alt="img-aveugle" />
+                    <img src={img.img ?? car} alt="img-aveugle" />
                     <input
                         className="input-file"
                         type="file"
@@ -68,7 +65,7 @@ const Allocation = () => {
 
                 <div className="stats">
                     <div className="content">
-                        <li>Nom: {img.file == null ? "" : img.file.name} </li>
+                        <li>Nom: {img.file === null ? "" : img.file.name} </li>
                     </div>
                     <div className="content">
                         <li>Label: {img.label} </li>
