@@ -1,14 +1,11 @@
 import {fetchPost} from "helpers/fetchers"
+import {History} from "helpers/history"
+import {historyActions} from "helpers/redux/history"
+import {useAppDispatch} from "helpers/redux/store"
 import React, {useCallback, useState} from "react"
 import car from "../assets/car.png"
-import History from "./Context"
 
-interface ImgState {
-  file: File | null
-  img: string | null
-  label: string
-  score: string | number
-}
+type ImgState = History
 
 const Allocation = () => {
   const [img, setImg] = useState<ImgState>({
@@ -17,16 +14,17 @@ const Allocation = () => {
     label: "None",
     score: "inf",
   })
-  const {hist, setHist} = React.useContext(History)
+
+  const dispatch = useAppDispatch()
 
   const wrapSetImg = useCallback(
     (elt: ImgState) => {
       setImg(elt)
       if (elt.score !== "inf") {
-        setHist([...hist, elt])
+        dispatch(historyActions.addHistory(elt))
       }
     },
-    [hist, setHist],
+    [dispatch],
   )
 
   const loadImg = (e: React.ChangeEvent<HTMLInputElement>) => {

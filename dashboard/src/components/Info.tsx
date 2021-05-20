@@ -1,9 +1,9 @@
 import {fetchGet} from "helpers/fetchers"
+import {useAppSelector} from "helpers/redux/store"
 import React, {useEffect, useState} from "react"
-import History from "./Context"
 
 const Info = () => {
-  const {hist} = React.useContext(History)
+  const hist = useAppSelector(state => state.history)
   const [scoreMean, setScoreMean] = useState<string>("0")
   const [limit, setLimit] = useState(0)
   const [nbIn, setNbIn] = useState(0)

@@ -1,15 +1,14 @@
-import {useContext} from "react"
-import History from "./Context"
+import {useAppSelector} from "helpers/redux/store"
 
 const Position: React.FC = () => {
-  const contextHist = useContext(History)
+  const hist = useAppSelector(state => state.history)
 
   return (
     <div className="position">
       Historique
       <div className="list-img">
-        {contextHist.hist.map((e, i) => {
-          if (contextHist.hist.length - i < 5) {
+        {hist.map((e, i) => {
+          if (hist.length - i < 5) {
             return (
               <img
                 src={e.img ?? undefined}

@@ -1,10 +1,9 @@
-import {useContext} from "react"
 // import {useEffect, useState} from 'react';
-import History from "./Context"
 import {Timeline} from "antd"
+import {useAppSelector} from "helpers/redux/store"
 
 const Performance: React.FC = () => {
-  const {hist} = useContext(History)
+  const hist = useAppSelector(state => state.history)
 
   return (
     <div className="performance">
