@@ -1,9 +1,24 @@
-import React, { useState } from "react"
-import { Modal, Button } from "antd"
-import { Upload, message } from "antd"
-import { InboxOutlined } from "@ant-design/icons"
+import {useMemo, useState} from "react"
+import {Modal, Button} from "antd"
+import {Upload, message} from "antd"
+import {InboxOutlined} from "@ant-design/icons"
+import {UploadFileStatus} from "antd/lib/upload/interface"
 
-const Predict = prop => {
+const {Dragger} = Upload
+
+interface Info {
+  file: {
+    status?: UploadFileStatus
+    name: string
+  }
+  fileList: ReadonlyArray<any>
+}
+
+interface PredictProps {
+  pipeline: string
+}
+
+const Predict: React.FC<PredictProps> = prop => {
   const [visible, setVisible] = useState(false)
 
   const showModal = () => {
@@ -14,29 +29,30 @@ const Predict = prop => {
     setVisible(false)
   }
 
-  const { Dragger } = Upload
-
-  const props = {
-    name: "file",
-    multiple: true,
-    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-    onChange(info) {
-      const { status } = info.file
-      if (status !== "uploading") {
-        console.log(info.file, info.fileList)
-      }
-      if (status === "done") {
-        message.success(`${info.file.name} file uploaded successfully.`)
-      } else if (status === "error") {
-        message.error(`${info.file.name} file upload failed.`)
-      }
-    },
-  }
+  const draggerProps = useMemo(
+    () => ({
+      name: "file",
+      multiple: true,
+      action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+      onChange(info: Info) {
+        const {status} = info.file
+        if (status !== "uploading") {
+          console.log(info.file, info.fileList)
+        }
+        if (status === "done") {
+          message.success(`${info.file.name} file uploaded successfully.`)
+        } else if (status === "error") {
+          message.error(`${info.file.name} file upload failed.`)
+        }
+      },
+    }),
+    [],
+  )
 
   return (
     <div className="predict-container">
       <div className="predict-btn">
-        <Button type="primary" onClick={() => showModal()}>
+        <Button type="primary" onClick={showModal}>
           Predict
         </Button>
       </div>
@@ -54,7 +70,7 @@ const Predict = prop => {
           </Button>,
         ]}
       >
-        <Dragger {...props}>
+        <Dragger {...draggerProps}>
           <p className="ant-upload-drag-icon">
             <InboxOutlined />
           </p>

@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { Layout, Menu } from "antd"
+import React, {useState} from "react"
+import {Layout, Menu} from "antd"
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -11,12 +11,12 @@ import {
 import Board from "../components/Board"
 import logo from "../assets/logo.png"
 
-import { BrowserRouter, Link, Switch, Route } from "react-router-dom"
+import {BrowserRouter, Link, Switch, Route} from "react-router-dom"
 import Graph from "../components/Graph"
 
-const { Header, Sider, Content } = Layout
+const {Header, Sider, Content} = Layout
 
-const SiderDemo = () => {
+const SiderDemo: React.FC = () => {
   const [state, setState] = useState({
     collapsed: false,
   })
@@ -49,7 +49,7 @@ const SiderDemo = () => {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }}>
+          <Header className="site-layout-background" style={{padding: 0}}>
             {React.createElement(
               state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
               {

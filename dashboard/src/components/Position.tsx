@@ -1,8 +1,8 @@
-import React from "react"
+import {useContext} from "react"
 import History from "./Context"
 
-const Position = () => {
-  const contextHist = React.useContext(History)
+const Position: React.FC = () => {
+  const contextHist = useContext(History)
 
   return (
     <div className="position">
@@ -12,9 +12,9 @@ const Position = () => {
           if (contextHist.hist.length - i < 5) {
             return (
               <img
-                src={e.img}
+                src={e.img ?? undefined}
                 alt="aveugle"
-                className={e.label === "In Distribution" ? "img-ok" : null}
+                className={e.label === "In Distribution" ? "img-ok" : ""}
               />
             )
           }

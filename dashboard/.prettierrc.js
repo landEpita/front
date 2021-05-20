@@ -8,5 +8,5 @@ module.exports = {
   trailingComma: "all",
   arrowParens: "avoid",
   endOfLine: "lf",
-  bracketSpacing: true,
+  bracketSpacing: false,
 }

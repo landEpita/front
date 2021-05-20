@@ -1,25 +1,33 @@
-import React, { useEffect, useState } from "react"
-import { Divider, Row, Col } from "antd"
+import {useCallback, useEffect, useState} from "react"
+import {Divider, Row, Col} from "antd"
+import {Node} from "helpers/graph"
 // import { Progress } from 'antd';
 
-const NodeInfo = props => {
-  const [node, setNode] = useState(null)
+interface NodeInfoProps {
+  graph: Node
+  name: string | null
+}
+
+const NodeInfo: React.FC<NodeInfoProps> = props => {
+  const {name, graph} = props
+
+  const [node, setNode] = useState<Node | null>(null)
   console.log(props)
 
-  const foo = elt => {
-    if (elt.name === props.name) {
-      setNode(elt)
-    }
-    console.log(elt.name)
-    if ("children" in elt) {
-      elt.children.map(child => foo(child))
-    }
-  }
+  const foo = useCallback(
+    (elt: Node) => {
+      if (elt.name === name) {
+        setNode(elt)
+      }
+      console.log(elt.name)
+      elt.children?.map(child => foo(child))
+    },
+    [name],
+  )
 
   useEffect(() => {
-    foo(props.graph)
-    console.log(node)
-  }, [props, node])
+    foo(graph)
+  }, [graph, foo])
 
   return (
     <div className="nodeInfo">
@@ -27,7 +35,7 @@ const NodeInfo = props => {
         <Row>
           <Col flex="100px">Version: </Col>
           <Col flex="auto">
-            <span>{node && node.version ? node.version : "None"}</span>
+            <span>{node?.version ?? "None"}</span>
           </Col>
         </Row>
       </div>
@@ -35,7 +43,7 @@ const NodeInfo = props => {
         <Row>
           <Col flex="100px">File: </Col>
           <Col flex="auto">
-            <span>{node && node.file ? node.file : "None"}</span>
+            <span>{node?.file ?? "None"}</span>
           </Col>
         </Row>
       </div>
@@ -44,7 +52,7 @@ const NodeInfo = props => {
       <Divider />
       <div className="info-container">
         <p>
-          <pre>{node && node.summary ? node.summary : "None"}</pre>
+          <pre>{node?.summary ?? "None"}</pre>
         </p>
       </div>
       {/* <Progress

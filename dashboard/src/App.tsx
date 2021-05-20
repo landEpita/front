@@ -2,7 +2,7 @@
 // import Home from "./pages/Home";
 import SiderDemo from "./pages/Layout"
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
       <SiderDemo />
