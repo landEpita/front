@@ -1,8 +1,8 @@
 import React from "react"
 
 const History = React.createContext({
-    hist: [],
-    setHist: () => {},
+  hist: [],
+  setHist: () => {},
 })
 
 export default History

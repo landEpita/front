@@ -2,12 +2,12 @@
 
 $font-1: "Poppins", sans-serif;
 
-$color-1: #F7FCFD;
-$color-2: #EFF2F6;
+$color-1: #f7fcfd;
+$color-2: #eff2f6;
 $color-3: #b3c6ce;
-$color-4: #2A3740;
-$color-5: #15A594;
-$color-6: #DFF0F5;
+$color-4: #2a3740;
+$color-5: #15a594;
+$color-6: #dff0f5;
 
 * {
   box-sizing: border-box;
@@ -15,7 +15,7 @@ $color-6: #DFF0F5;
   padding: 0;
 }
 body {
-  margin: 0 ;
+  margin: 0;
   font-family: $font-1;
   color: $color-4;
   background-color: $color-3;

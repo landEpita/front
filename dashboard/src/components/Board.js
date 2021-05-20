@@ -6,23 +6,23 @@ import Position from "./Position"
 import History from "./Context"
 
 const Board = () => {
-    const [hist, setHist] = useState([])
+  const [hist, setHist] = useState([])
 
-    const contextHist = {
-        hist: hist,
-        setHist: setHist,
-    }
+  const contextHist = {
+    hist: hist,
+    setHist: setHist,
+  }
 
-    return (
-        <div className="board">
-            <History.Provider value={contextHist}>
-                <Info />
-                <Allocation />
-                <Performance />
-                <Position />
-            </History.Provider>
-        </div>
-    )
+  return (
+    <div className="board">
+      <History.Provider value={contextHist}>
+        <Info />
+        <Allocation />
+        <Performance />
+        <Position />
+      </History.Provider>
+    </div>
+  )
 }
 
 export default Board
