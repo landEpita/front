@@ -3,6 +3,7 @@ import Tree from 'react-tree-graph';
 import { Drawer, Input, Button, Tooltip } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import NodeInfo from './NodeInfo';
+import Predict from './Predict';
 
 
 const Graph = () => {
@@ -12,7 +13,7 @@ const Graph = () => {
     const [port, setPort] = useState(null);
     const [addr, setAddr] = useState(null);
     const [data, setData] = useState({
-        name: 'Validation',
+        name: 'node',
         textProps: {x: -25, y: 25}
         // children: [{
         //     name: 'preprocessing 1',
@@ -74,6 +75,7 @@ const Graph = () => {
             <Tooltip title="search">
                 <Button type="primary" shape="circle" icon={<SearchOutlined />} onClick={()=> getData()}/>
             </Tooltip>
+            <Predict pipeline={name}/>
             </div>
 
             <div className="custom-container">

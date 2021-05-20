@@ -81,3 +81,10 @@ svg.custom path.link {
     margin: 5px 0;
     color: $color-4;
 }
+.predict-btn
+{
+    .ant-btn{
+        position: absolute; 
+        right: 15px;
+    }
+}
